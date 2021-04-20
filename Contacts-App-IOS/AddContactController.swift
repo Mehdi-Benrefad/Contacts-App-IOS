@@ -13,13 +13,18 @@ class AddContactController: UIViewController {
     @IBOutlet weak var prenom: UITextField!
     @IBOutlet weak var tel: UITextField!
     
+    @IBOutlet weak var boutonAjouter: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        boutonAjouter.layer.cornerRadius=25.0    }
+    
+    @IBAction func ajouter(_ sender: Any) {
+         //dismiss(animated: true, completion: nil)
+        
     }
     
-
     @IBAction func dismiss(_ sender: Any) {
         nom.resignFirstResponder()
         prenom.resignFirstResponder()

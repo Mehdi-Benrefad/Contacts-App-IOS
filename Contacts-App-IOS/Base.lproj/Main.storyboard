@@ -164,6 +164,9 @@
                                 <state key="normal" title="Ajouter">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="ajouter:" destination="ml9-Sd-3Gi" eventType="touchUpInside" id="E26-iw-d1n"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.7834928632" green="0.92663544419999999" blue="0.62643712760000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -175,6 +178,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Ajouter Contact" id="wCF-ci-3vn"/>
                     <connections>
+                        <outlet property="boutonAjouter" destination="1xC-Ca-JVu" id="J2r-Cb-Mcw"/>
                         <outlet property="nom" destination="Kf1-yl-YJW" id="XwC-R2-6vG"/>
                         <outlet property="prenom" destination="WIP-M9-w30" id="NC0-Lw-SeN"/>
                         <outlet property="tel" destination="8vg-dh-0aS" id="soY-fR-hFh"/>
