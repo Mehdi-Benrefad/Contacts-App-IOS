@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContactsController: UIViewController ,UITableViewDataSource{
+class ContactsController: UIViewController ,UITableViewDataSource , UITableViewDelegate{
     
     var contacts = Contact.All()
     
@@ -50,6 +50,22 @@ class ContactsController: UIViewController ,UITableViewDataSource{
         cell.textLabel?.text = fullname
         cell.detailTextLabel?.text = contact.tel
        return cell
+    }
+    
+    
+    
+    //supprimer un contact
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete
+        {
+            //tableView.deleteRows(at: [indexPath], with: .automatic)
+            let contactToRemove = contacts[indexPath.row]
+            AppDelegate.viewContext.delete(contactToRemove)
+            try? AppDelegate.viewContext.save()
+            contacts = Contact.All()
+            tableView.reloadData()
+            
+        }
     }
     
 }

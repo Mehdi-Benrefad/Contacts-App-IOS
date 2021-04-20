@@ -10,6 +10,8 @@ import Foundation
 import CoreData
 
 class Contact:NSManagedObject{
+    
+    //recuperer tous les contacts
     static func All() -> [Contact]{
         let request:NSFetchRequest <Contact> = Contact.fetchRequest()
         guard let contacts = try? AppDelegate.viewContext.fetch(request) else{
@@ -17,5 +19,7 @@ class Contact:NSManagedObject{
         }
         return contacts
     }
+    
+    //supprimer un contact
 }
 

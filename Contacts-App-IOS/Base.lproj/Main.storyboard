@@ -63,6 +63,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="t3t-mr-R8L" id="h0p-1B-D0C"/>
+                                    <outlet property="delegate" destination="t3t-mr-R8L" id="uiU-zI-a1z"/>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ji3-dc-WZe">
