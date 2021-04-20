@@ -10,7 +10,7 @@ import UIKit
 
 class ContactsController: UIViewController ,UITableViewDataSource{
     
-   
+    var contacts = Contact.All()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -20,6 +20,7 @@ class ContactsController: UIViewController ,UITableViewDataSource{
         // Do any additional setup after loading the view.
     }
     
+   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
@@ -30,16 +31,18 @@ class ContactsController: UIViewController ,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return contacts.count
     }
     
        //on charge chaque "Movie" dans sa cellule correspondante
-   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
-       let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath)
-        cell.textLabel?.text = "Mehdi Benrefad"
-        cell.detailTextLabel?.text = "0636892648"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath)
+        let contact = contacts[indexPath.row]
+        let fullname = contact.nom! + contact.prenom!
+        cell.textLabel?.text = fullname
+        cell.detailTextLabel?.text = contact.tel
        return cell
-   }
+    }
     
 }

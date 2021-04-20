@@ -10,6 +10,12 @@ import Foundation
 import CoreData
 
 class Contact:NSManagedObject{
-    
+    static func All() -> [Contact]{
+        let request:NSFetchRequest <Contact> = Contact.fetchRequest()
+        guard let contacts = try? AppDelegate.viewContext.fetch(request) else{
+            return []
+        }
+        return contacts
+    }
 }
 

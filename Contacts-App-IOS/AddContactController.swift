@@ -21,7 +21,18 @@ class AddContactController: UIViewController {
         boutonAjouter.layer.cornerRadius=25.0    }
     
     @IBAction func ajouter(_ sender: Any) {
-         //dismiss(animated: true, completion: nil)
+        //On fait appel au contexte
+        let contact=Contact(context: AppDelegate.viewContext)
+        //On remplis lw Contexte
+        contact.nom = nom.text
+        contact.prenom = prenom.text
+        contact.tel = tel.text
+        //sauvegarder le contexte
+        try? AppDelegate.viewContext.save()
+       
+        //revenir en arriere
+        dismiss(animated: true, completion: nil)
+        
         
     }
     
