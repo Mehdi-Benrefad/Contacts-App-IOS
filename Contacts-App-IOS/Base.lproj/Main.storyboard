@@ -166,6 +166,7 @@
                                 </state>
                                 <connections>
                                     <action selector="ajouter:" destination="ml9-Sd-3Gi" eventType="touchUpInside" id="E26-iw-d1n"/>
+                                    <segue destination="3cE-W1-WLP" kind="unwind" unwindAction="unwindToWelcomeWithSegue:" id="H96-l6-6xu"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -185,6 +186,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wPs-CC-XXE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="3cE-W1-WLP" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="CoH-rR-8Yb">
                     <connections>
                         <action selector="dismiss:" destination="ml9-Sd-3Gi" id="r9O-yz-N1a"/>

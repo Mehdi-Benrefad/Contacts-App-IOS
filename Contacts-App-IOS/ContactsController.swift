@@ -20,9 +20,16 @@ class ContactsController: UIViewController ,UITableViewDataSource{
         // Do any additional setup after loading the view.
     }
     
-   
+   //on declare le controlleur comme cible potencielle d'un unwind segue
+    @IBAction func unwindToWelcome(segue:UIStoryboardSegue) {
+        contacts = Contact.All()
+        tableView.reloadData()
+        
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        contacts = Contact.All()
         tableView.reloadData()
     }
     
@@ -39,7 +46,7 @@ class ContactsController: UIViewController ,UITableViewDataSource{
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath)
         let contact = contacts[indexPath.row]
-        let fullname = contact.nom! + contact.prenom!
+        let fullname = contact.nom! + " " + contact.prenom!
         cell.textLabel?.text = fullname
         cell.detailTextLabel?.text = contact.tel
        return cell
