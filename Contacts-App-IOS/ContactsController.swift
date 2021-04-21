@@ -62,10 +62,68 @@ class ContactsController: UIViewController ,UITableViewDataSource , UITableViewD
             let contactToRemove = contacts[indexPath.row]
             AppDelegate.viewContext.delete(contactToRemove)
             try? AppDelegate.viewContext.save()
+            //rafraichire la page
             contacts = Contact.All()
             tableView.reloadData()
             
         }
     }
     
+    
+    
+    //modifier un contact via une alerte
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //select contact
+        let contact = contacts[indexPath.row]
+        print("hello")
+        //creer une alerte
+        let alertVC = UIAlertController(title: "Edit Person", message: "Entrer le nom , le prenom puis le telephone", preferredStyle:.alert)
+       
+        //creer les labels pour l'alerte
+        //let label = UILabel(frame: CGRect(x: 0, y: 30, width: 50, height: 50))
+        //label.text = "Nom/prenom/Telephone"
+        //alertVC.view.addSubview(label)
+        
+        //creer les textfields pour l'alerte
+        alertVC.addTextField()
+        alertVC.addTextField()
+        alertVC.addTextField()
+        
+        //recuperer les champs de l'alerte
+        var nom = alertVC.textFields![0]
+        var prenom = alertVC.textFields![1]
+        var tel = alertVC.textFields![2]
+        
+        //remplir les champs par les anciennes valeurs
+        nom.text = contact.nom
+        prenom.text = contact.prenom
+        tel.text = contact.tel
+        
+        //on met un ecouteur sur le bouton save
+        let saveButton = UIAlertAction(title: "save" , style: .default){ (action) in
+            
+            //on remliot le contact par les nouvelles valeurs
+            contact.nom=alertVC.textFields![0].text
+            contact.prenom=alertVC.textFields![1].text
+            contact.tel=alertVC.textFields![2].text
+            
+            //on enregistre les nouvelles donnees
+            do{
+                try AppDelegate.viewContext.save()
+            }catch{
+                
+            }
+            
+            
+        }
+        
+        //ajouter une action a l'alerte
+        alertVC.addAction(saveButton)
+        //lancer l'alerte
+        self.present(alertVC, animated: true, completion: nil)
+        
+        //reload data
+        contacts = Contact.All()
+        tableView.reloadData()
+    }
 }
