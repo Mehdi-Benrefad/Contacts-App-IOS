@@ -114,6 +114,8 @@ class ContactsController: UIViewController ,UITableViewDataSource , UITableViewD
                 
             }
             
+            self.contacts = Contact.All()
+            tableView.reloadData()
             
         }
         
