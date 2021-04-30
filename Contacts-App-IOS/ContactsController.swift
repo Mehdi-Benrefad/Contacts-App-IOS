@@ -54,8 +54,9 @@ class ContactsController: UIViewController ,UITableViewDataSource , UITableViewD
     
     
     
-    //supprimer un contact
+    //supprimer un contact[utiliser la valeur par defaut]
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        /*
         if editingStyle == .delete
         {
             //tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -67,7 +68,48 @@ class ContactsController: UIViewController ,UITableViewDataSource , UITableViewD
             tableView.reloadData()
             
         }
+         */
     }
+    
+    
+    /*
+        Personnliser le style d'edition des lignes:
+            +[SUPPRIMER UN CONTACT]
+            +[EFFECTUER UN APPEL]
+     */
+    //************************************************************************************************
+        func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+            return true
+        }
+        
+        func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+            
+            //bouton supprimer
+            let deleteButton = UITableViewRowAction(style: .normal , title: "Delete"){ (rowAction , indexpath) in
+                
+                //tableView.deleteRows(at: [indexPath], with: .automatic)
+                let contactToRemove = self.contacts[indexPath.row]
+                           AppDelegate.viewContext.delete(contactToRemove)
+                           try? AppDelegate.viewContext.save()
+                           //rafraichire la page
+                            self.contacts = Contact.All()
+                           tableView.reloadData()
+                
+            }
+            deleteButton.backgroundColor = #colorLiteral(red: 0.9528660178, green: 0.5290379524, blue: 0.5794923902, alpha: 1)
+            
+            
+            //boutton appeler
+            let callButton = UITableViewRowAction(style: .normal , title: "Call"){ (rowAction , indexpath) in
+                
+                //tableView.deleteRows(at: [indexPath], with: .automatic)
+                
+            }
+            callButton.backgroundColor = #colorLiteral(red: 0.7834928632, green: 0.9266354442, blue: 0.6264371276, alpha: 1)
+            
+            return [deleteButton , callButton]
+        }
+    //*************************************************************************************************
     
     
     
