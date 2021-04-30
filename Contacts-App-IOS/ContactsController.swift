@@ -101,13 +101,21 @@ class ContactsController: UIViewController ,UITableViewDataSource , UITableViewD
             
             //boutton appeler
             let callButton = UITableViewRowAction(style: .normal , title: "Call"){ (rowAction , indexpath) in
-                
-                //tableView.deleteRows(at: [indexPath], with: .automatic)
-                
+                //on cree notre url vers l'application telephone en lui passant le numero en parametres
+                guard let number = self.contacts[indexPath.row].tel  else{
+                    return
+                }
+                let url:NSURL = URL(string: "TEL://\(number)")! as NSURL
+                UIApplication.shared.open(url as URL , options: [:] , completionHandler: nil)
             }
             callButton.backgroundColor = #colorLiteral(red: 0.7834928632, green: 0.9266354442, blue: 0.6264371276, alpha: 1)
             
+            //on fait un retour deux boutons
             return [deleteButton , callButton]
+        }
+    
+        override var prefersStatusBarHidden: Bool{
+            return true
         }
     //*************************************************************************************************
     
