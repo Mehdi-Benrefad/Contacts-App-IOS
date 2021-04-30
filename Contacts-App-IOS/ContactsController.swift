@@ -105,8 +105,14 @@ class ContactsController: UIViewController ,UITableViewDataSource , UITableViewD
                 guard let number = self.contacts[indexPath.row].tel  else{
                     return
                 }
-                let url:NSURL = URL(string: "TEL://\(number)")! as NSURL
-                UIApplication.shared.open(url as URL , options: [:] , completionHandler: nil)
+                
+                if let phoneCallURL = URL(string: "tel://\(number)") {
+                  let application:UIApplication = UIApplication.shared
+                  if (application.canOpenURL(phoneCallURL)) {
+                      application.open(phoneCallURL, options: [:], completionHandler: nil)
+                  }
+                }
+                
             }
             callButton.backgroundColor = #colorLiteral(red: 0.7834928632, green: 0.9266354442, blue: 0.6264371276, alpha: 1)
             
