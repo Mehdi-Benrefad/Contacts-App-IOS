@@ -113,7 +113,10 @@ class ContactsController: UIViewController ,UITableViewDataSource , UITableViewD
             //on fait un retour deux boutons
             return [deleteButton , callButton]
         }
-    
+        
+        override func didReceiveMemoryWarning() {
+            self.didReceiveMemoryWarning()
+        }
         override var prefersStatusBarHidden: Bool{
             return true
         }
